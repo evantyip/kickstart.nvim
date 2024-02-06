@@ -35,3 +35,12 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- netrw explore
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+
+-- copy path of current buffer to clipboard
+local copy_path = function()
+    local path = vim.fn.expand("%:p")
+    vim.fn.setreg("+", path)
+    vim.notify('Copied "' .. path .. '" to the clipboard!')
+end
+
+vim.keymap.set("n", "<leader>cp", function() copy_path() end, {desc = "Input cwd for telescope"})
