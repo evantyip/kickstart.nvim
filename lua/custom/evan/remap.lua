@@ -44,3 +44,6 @@ local copy_path = function()
 end
 
 vim.keymap.set("n", "<leader>cp", function() copy_path() end, {desc = "Input cwd for telescope"})
+
+-- open to current file in Neotree
+vim.keymap.set('n', '<leader>fr', ':Neotree reveal<CR>', {})
