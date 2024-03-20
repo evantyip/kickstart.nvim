@@ -125,6 +125,7 @@ require('lazy').setup({
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
+      current_line_blame = true,
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 
@@ -435,6 +436,7 @@ end, { desc = '[/] Fuzzily search in current buffer' })
 vim.keymap.set("n", "<C-p>", require('fzf-lua').files, { desc = "[F]ind [F]iles"})
 vim.keymap.set('n', '<leader>s/', require('fzf-lua').live_grep, { desc = '[S]earch [/] in Open Files' })
 vim.keymap.set('n', '<leader>gf', require('fzf-lua').git_files, { desc = 'Search [G]it [F]iles' })
+vim.keymap.set('n', '<leader>gs', require('fzf-lua').git_status, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<leader>sf', require('fzf-lua').files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('fzf-lua').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('fzf-lua').grep_cword, { desc = '[S]earch current [W]ord' })
@@ -461,7 +463,7 @@ vim.defer_fn(function()
     -- You can specify additional Treesitter modules here: -- For example: -- playground = {--enable = true,-- },
     modules = {},
     highlight = { enable = true },
-    indent = { enable = true },
+    indent = { enable = false },
     incremental_selection = {
       enable = true,
       keymaps = {
@@ -514,6 +516,7 @@ vim.defer_fn(function()
           ['<leader>A'] = '@parameter.inner',
         },
       },
+      endwise = { enable = true },    -- Ruby, Lua, ...
     },
   }
 end, 0)
@@ -694,5 +697,28 @@ require('lspconfig').ruby_ls.setup {
 }
 
 vim.filetype.add({ extension = { templ = "templ" } })
+
+require('toggleterm').setup {
+  size = 20,
+  open_mapping = [[<c-t>]],
+  hide_numbers = true,
+  shade_filetypes = {},
+  shade_terminals = true,
+  shading_factor = 2,
+  start_in_insert = true,
+  insert_mappings = true,
+  persist_size = true,
+  direction = "float",
+  close_on_exit = true,
+  shell = vim.o.shell,
+  float_opts = {
+    border = "curved",
+    winblend = 0,
+    highlights = {
+      border = "Normal",
+      background = "Normal"
+    },
+  },
+}
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
