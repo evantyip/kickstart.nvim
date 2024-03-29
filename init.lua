@@ -254,18 +254,6 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
-  { 'ThePrimeagen/vim-be-good' },
-
-  {
-    "ibhagwan/fzf-lua",
-    -- optional for icon support
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      -- calling `setup` is optional for customization
-      require("fzf-lua").setup({})
-    end
-  },
-
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -297,7 +285,7 @@ vim.o.mouse = 'a'
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+-- vim.o.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -475,7 +463,7 @@ vim.defer_fn(function()
     },
     textobjects = {
       select = {
-        enable = true,
+        enable = false,
         lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
         keymaps = {
           -- You can use the capture groups defined in textobjects.scm
@@ -599,10 +587,10 @@ require('mason-lspconfig').setup()
 --  define the property 'filetypes' to the map in question.
 local servers = {
   -- clangd = {},
-  -- gopls = {},
+  gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
-  -- tsserver = {},
+  tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
