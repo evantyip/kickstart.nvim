@@ -708,6 +708,10 @@ require('lspconfig').ruby_ls.setup {
   on_attach = on_attach,
 }
 
+require('lspconfig').rubocop.setup {
+  on_attach = on_attach,
+}
+
 vim.filetype.add({ extension = { templ = "templ" } })
 
 require('toggleterm').setup {
