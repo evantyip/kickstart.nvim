@@ -1,7 +1,7 @@
 return {
   "luukvbaal/statuscol.nvim", config = function()
     vim.o.foldcolumn = "auto:1"
-    vim.o.fillchars = [[eob: ,fold: ,foldopen:▽,foldsep: ,foldclose:▷]]
+    vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
     local builtin = require("statuscol.builtin")
     require("statuscol").setup({
       relculright = true,
